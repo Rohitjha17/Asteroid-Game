@@ -4,37 +4,69 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game</title>
+    <title>Asteroid Game</title>
     <link rel="stylesheet" href="style.css" />
     <meta name="google-site-verification" content="w1Vbh08hrs0EUHg3XWQicVOlet6CSNpnylsI8O9h-e4" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
   </head>
-
-  </script>
   <body>
- <h1>Welcome to the Ultimate Shooting Game</h1>
-  <h2>Choose Your Difficulty Level</h2>
-  <div class="scoreBoard">Score : 0</div>
-    <form action="" method="get">
-      <select name="" id="difficulty">
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
-        <option value="Insane">Insane</option>
-      </select>
+    <div id="auth-section" class="landing-card" style="display: none;">
+      <h1 class="landing-title">Welcome to the <span>Ultimate Shooting Game</span></h1>
+      <p class="landing-sub">Sign in or sign up to start playing and track your scores!</p>
+      <div class="landing-btns">
+        <a href="signin.html" class="landing-btn">Sign In</a>
+        <a href="signup.html" class="landing-btn">Sign Up</a>
+      </div>
+    </div>
 
-      <input type="submit" value="Play" />
-    </form>
-
-    <div class="myGame"></div>
+    <div id="game-section" style="display: none;" class="landing-page">
+      <h1>Welcome to the Ultimate Shooting Game</h1>
+      <h2>Choose Your Difficulty Level</h2>
+      <div class="scoreBoard">Score : 0</div>
+      <form action="" method="get">
+        <select name="" id="difficulty">
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Insane">Insane</option>
+        </select>
+        <input type="submit" value="Play" />
+      </form>
+      <div class="myGame"></div>
+      <button id="signout-button" class="auth-button">Sign Out</button>
+    </div>
   </body>
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
     integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const authSection = document.getElementById('auth-section');
+    const gameSection = document.getElementById('game-section');
+    const signoutButton = document.getElementById('signout-button');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authSection.style.display = 'none';
+        gameSection.style.display = 'block';
+      } else {
+        authSection.style.display = 'block';
+        gameSection.style.display = 'none';
+      }
+    });
+
+    signoutButton.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        window.location.reload();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
   <script src="./index.js"></script>
 </html>

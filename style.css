@@ -1,107 +1,554 @@
-.myGame {
+/* Game Section Styles */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #1a1a1a;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Gaming Page Styles */
+.game-page {
+    width: 100vw;
     height: 100vh;
-    width: 99.5%;
-  }
-  
-  canvas {
-    background-color: rgb(49, 49, 49);
-    max-width: 100%;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.myGame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #1a1a1a;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #1a1a1a;
     cursor: crosshair;
-  }
-  
-  * {
+}
+
+.scoreBoard {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(41, 128, 185, 0.9);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#signout-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: rgba(231, 76, 60, 0.9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+#signout-button:hover {
+    background: rgba(192, 57, 43, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Level Selection Page Styles */
+.level-select-page {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.level-select-container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.level-select-container h1 {
+    color: #1a2a6c;
+    font-size: 32px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.level-select-container h2 {
+    color: #b21f1f;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.level-select-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.level-select {
+    width: 80%;
+    padding: 15px 20px;
+    font-size: 18px;
+    border: 2px solid #b21f1f;
+    border-radius: 12px;
+    background: white;
+    color: #1a2a6c;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b21f1f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.level-select:hover {
+    border-color: #fdbb2d;
+    box-shadow: 0 0 20px rgba(253, 187, 45, 0.2);
+}
+
+.start-game-btn {
+    width: 80%;
+    padding: 15px 0;
+    background: linear-gradient(135deg, #b21f1f, #fdbb2d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.start-game-btn:hover {
+    background: linear-gradient(135deg, #fdbb2d, #b21f1f);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(178, 31, 31, 0.3);
+}
+
+/* Game Over Screen */
+.gameover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.gameover div {
+    color: white;
+    font-size: 28px;
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gameover button {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #b21f1f, #fdbb2d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gameover button:hover {
+    background: linear-gradient(135deg, #fdbb2d, #b21f1f);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(178, 31, 31, 0.4);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .level-select-container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .level-select-container h1 {
+        font-size: 24px;
+    }
+
+    .level-select-container h2 {
+        font-size: 16px;
+    }
+
+    .level-select,
+    .start-game-btn {
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .scoreBoard {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .gameover div {
+        font-size: 20px;
+    }
+
+    .gameover button {
+        font-size: 16px;
+        padding: 12px 30px;
+    }
+}
+
+/* Authentication Styles */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.auth-container h1 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.auth-container h1 i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fff;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    color: #95a5a6;
+    font-size: 18px;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.auth-button:hover {
+    background: linear-gradient(to right, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(52, 152, 219, 0.3);
+}
+
+.auth-button i {
+    margin-right: 8px;
+}
+
+.auth-links {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.auth-links p {
+    margin-bottom: 10px;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.auth-links a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .auth-container {
+        margin: 15px;
+        padding: 30px 20px;
+    }
+    
+    .auth-container h1 {
+        font-size: 24px;
+    }
+    
+    .form-group input {
+        padding: 10px 10px 10px 40px;
+    }
+}
+
+/* Fix form conflicts with game styles */
+.auth-container form {
+    background: none;
+    height: auto;
+    width: 100%;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .scoreBoard {
-    position: fixed;
-    top: 5%;
-    left: 5%;
-    font: 600 1.2vmax "Franklin Gothic Medium";
-    color: white;
-    display: none;
-  }
-  
-  form {
-    background-color: rgba(255, 255, 255, 0.158);
-    height: 60vh;
-    width: 60vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+}
+
+.auth-container form input,
+.auth-container form button {
+    width: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Only apply flex centering and Poppins font to auth pages */
+body.auth-page {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
     justify-content: center;
     align-items: center;
-  }
-  form > select,
-  form select option {
-    padding: 2vmax;
-    width: 20vw;
+    min-height: 100vh;
+}
+
+/* Landing page styles */
+.landing-page {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    max-width: 500px;
+    margin: 60px auto 0 auto;
+    padding: 40px 30px 30px 30px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
     text-align: center;
-    font-size: 1.4vmax;
-    font-family: cursive;
-    outline: none;
-    transition: all 0.5s;
-    border: none;
-  }
-  form > input {
-    margin: 2vmax;
-    padding: 2vmax;
-    width: 20vw;
-    cursor: pointer;
-    border: none;
-    color: white;
-    transition: all 0.5s;
-    background-color: indianred;
-    font-size: 1.4vmax;
-    font-family: cursive;
-    outline: none;
-  }
-  
-  form > select:hover {
-    box-shadow: 0 0 10px white;
-  }
-  form > input:hover {
-    background-color: rgb(194, 27, 91);
-    box-shadow: 0 0 10px white;
-  }
-  
-  .gameover {
-    background-color: rgba(122, 122, 122, 0.041);
-    border-radius: 5px;
-    position: fixed;
-    top: 50%;
-    height: 100vh;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+}
+.landing-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a2a6c;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+.landing-page h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #b21f1f;
+    margin-bottom: 24px;
+}
+.landing-page .scoreBoard {
+    position: static;
+    color: #fff;
+    background: #2980b9;
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+.landing-page form {
+    position: static;
+    background: none;
+    height: auto;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-  }
-  
-  .gameover > button {
-    padding: 1vmax;
-    border: 2px solid rgb(255, 255, 255);
+    padding: 0;
+    margin: 0 0 18px 0;
+}
+.landing-page form > select {
+    padding: 12px 0;
+    width: 70%;
+    font-size: 1.1rem;
+    font-family: 'Poppins', cursive, sans-serif;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #b21f1f;
+    background: #f5f5f5;
+    color: #1a2a6c;
+    text-align: center;
+}
+.landing-page form > input[type="submit"] {
+    padding: 12px 0;
+    width: 70%;
+    background: linear-gradient(90deg, #b21f1f, #fdbb2d);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', cursive, sans-serif;
+    font-weight: 600;
     cursor: pointer;
-    width: 10vw;
-    background-color: white;
-    font: 900 1.1vmax cursive;
-    transition: all 0.5s;
+    transition: background 0.3s;
+}
+.landing-page form > input[type="submit"]:hover {
+    background: linear-gradient(90deg, #fdbb2d, #b21f1f);
+}
+
+/* Landing Card Styles for Auth Section */
+.landing-card {
+    max-width: 420px;
+    margin: 80px auto 0 auto;
+    padding: 48px 36px 36px 36px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.landing-title {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a2a6c;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+.landing-title span {
+    color: #b21f1f;
+    font-weight: 800;
+}
+.landing-sub {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 32px;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+.landing-btns {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+}
+.landing-btn {
+    padding: 12px 32px;
+    background: linear-gradient(90deg, #b21f1f, #fdbb2d);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(178, 31, 31, 0.08);
+}
+.landing-btn:hover {
+    background: linear-gradient(90deg, #fdbb2d, #b21f1f);
+    transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .landing-card {
+    padding: 28px 10px 24px 10px;
+    margin: 30px 8px 0 8px;
   }
-  .gameover > button:hover {
-    background-color: rgb(30, 30, 34);
-    color: white;
-    box-shadow: 0 0 10px rgb(255, 255, 255);
+  .landing-title {
+    font-size: 1.3rem;
   }
-  
-  .gameover > div {
-    margin: 2vmax;
-    color: white;
-    font: 600 1.2vmax cursive;
+  .landing-btn {
+    padding: 10px 18px;
+    font-size: 1rem;
   }
+}
